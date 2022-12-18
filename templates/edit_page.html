@@ -1,0 +1,127 @@
+
+
+<header>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile_page.css') }}">
+
+	<h1 style="text-align:  center; margin-top: 2.3rem; padding: 20px 20px">Edit profile</h1>
+	<div class="container">
+
+
+
+
+
+  <form action="" action="/" method="post" name="myForm" autocomplete="on"  enctype="multipart/form-data">
+
+	  <input type="submit" name='submit' value="SAVE">
+	  <input style="margin: 0px 50px" type="submit" name='delete' value="DELETE PROFILE">
+	  <p></p>
+	  		<div class="profile-bio">
+				<p><input name="name" class="profile-real-name"  size="100" placeholder="Name: {{name}}"> </input></p>
+			</div>
+
+	  		<div class="profile-bio">
+				<p><input name="last_name" class="profile-real-name"  size="100" placeholder="Last name: {{last_name}}"> </input></p>
+			</div>
+
+			<div class="profile-bio">
+				<p><input name="biography" class="profile-real-name"  size="100" placeholder="About me: {{biography}}"> </input></p>
+			</div>
+
+			<div class="profile-bio">
+				<p><input name="city" class="profile-real-name" placeholder="City: {{city}}"></input></p>
+			</div>
+
+			<div class="profile-bio">
+				<p><input name="gender" class="profile-real-name" placeholder="Gender: {{gender}}"></input></p>
+			</div>
+
+			<div class="profile-bio">
+				<p><input name="age" class="profile-real-name" placeholder="Age: {{age}}"></input></p>
+			</div>
+
+	  <div class="profile-bio">
+				<p><input name="vk_inst" class="profile-real-name" placeholder="Contact: {{vk_inst}}"></input></p>
+			</div>
+
+			<div class="profile-bio">
+				<p><input name="min_age" class="profile-real-name" placeholder="Prefer min age: {{min_age}}"</input></p>
+			</div>
+
+	 	 <div class="profile-bio">
+				<p><input name="max_age" class="profile-real-name" placeholder="Prefer max age: {{max_age}}"</input></p>
+			</div>
+
+
+			<div class="profile-bio">
+
+				<p><input name="idk" class="profile-real-name"placeholder="{% for city in pref_cities %}{{city}} {% endfor %}"  size="100"  ></input>
+
+
+				</p>
+			</div>
+
+			<div class="profile-bio">
+				<p> <a>Photo:</a>
+				 <input  type="file" name="file" class="form-control" ></p>
+			</div>
+
+	  <div class="profile-bio">
+      <fieldset>
+      <legend class="gender">Preferred gender:</legend>
+
+      <div class="pretty p-icon p-round p-plain p-smooth p-bigger">
+        <input type="radio" value="male" name="pref_gender">
+        <div class="state p-primary-o">
+          <i class="fas fa-male icon"></i>
+          <label for="male">Male</label>
+        </div>
+      </div>
+
+
+      <div class="pretty p-icon p-round p-plain p-smooth p-bigger">
+        <input type="radio" value="female" name="pref_gender">
+        <div class="state p-primary-o">
+          <i class="fas fa-female icon"></i>
+          <label for="female">Female</label>
+        </div>
+      </div>
+	  </fieldset>
+
+
+		  </div>
+
+
+
+	   <div style="padding: 10px 50px" class="profile-bio">
+
+		   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://phpcoder.tech/multiselect/js/jquery.multiselect.js"></script>
+      <div class="signup-field">
+<select name="citySelect[]" multiple id="citySelect">
+    {% for city in all_cities %}
+    <option value={{city[0]}}>{{city[0]}}</option>
+    {% endfor %}
+</select>
+      </div>
+
+			  </div >
+
+
+
+		<script>
+    jQuery('#citySelect').multiselect({
+    columns: 1,
+    placeholder: 'Preferred cities:',
+    search: true
+});
+</script>
+
+
+	  </form>
+</div>
+
+</header>
+
+
+
+

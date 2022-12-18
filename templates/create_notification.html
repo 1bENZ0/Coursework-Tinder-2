@@ -1,0 +1,30 @@
+
+
+<header>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile_page.css') }}">
+
+	<h1 style="text-align:  center; margin-top: 2.3rem; padding: 20px 20px">Notification</h1>
+	<div class="container">
+
+
+
+
+
+  <form action="" action="/" method="post" name="myForm" autocomplete="on"  enctype="multipart/form-data">
+
+	  <input type="submit" name='submit' value="SEND">
+
+	  <p></p>
+	  		<div class="profile-bio">
+				<p><input  name="reason" class="profile-real-name"  size="100" placeholder="Reason: " required/> </p>
+			</div>
+	  </form>
+
+		 <button class="btn profile-edit-btn" onclick="window.location.href='{{ url_for( 'user_profile_for_admin', id=id) }}';">Back</button>
+</div>
+
+</header>
+
+
+
+

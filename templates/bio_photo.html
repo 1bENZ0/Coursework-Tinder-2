@@ -1,0 +1,30 @@
+{% extends 'flash_errors.html' %}
+
+{% block content %}
+<head>
+ <link rel="stylesheet" href="{{ url_for('static', filename='css/new_profile.css') }}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+</head>
+
+<body>
+  <form action="" action="/" method="post" name="myForm" autocomplete="on"  enctype="multipart/form-data"> <!-- name attribute bom rabil samo če dodam Javascript-->
+
+    <h1 class="title">ABOUT U</h1>
+
+          <div class="signup-field">
+      <label for="biography">Biography (optional)</label>
+      <input type="biography" name="biography" class="input-field" placeholder="About you" >
+    </div>
+
+      <div class="signup-field">
+      <label for="photo">Photo (optional)</label>
+          <input type="file" name="file" class="form-control" >
+        </div>
+
+  <div class="signup-button">
+    <input type="submit" name='submit' value="CONTINUE">
+  </div>
+  </form>
+</body>
+
+{% endblock %}

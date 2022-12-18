@@ -1,0 +1,131 @@
+{% extends 'flash_errors.html' %}
+
+{% block content %}
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+ <link rel="stylesheet" href="{{ url_for('static', filename='css/new_profile.css') }}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+</head>
+
+<body>
+  <form action="" method="post" name="myForm" autocomplete="on"> <!-- name attribute bom rabil samo če dodam Javascript-->
+
+    <h1 class="title">PROFILE</h1>
+
+    <div class="signup-field">
+      <label for="name">Name</label>
+      <input type="text" name="name" class="input-field" placeholder="Type your name" required autofocus>
+    </div>
+
+    <div class="signup-field">
+      <label for="last_name">Last Name</label>
+      <input type="text" name="last_name" class="input-field" placeholder="Type your last name" required>
+    </div>
+
+    <div class="signup-field">
+      <label for="city">City</label>
+      <input type="city" name="city" class="input-field" placeholder="Type your city" required>
+    </div>
+
+    <div class="signup-field">
+      <label for="Link">Link vk/inst</label>
+      <input type="link" name="link" class="input-field" placeholder="Link to your messenger" required>
+    </div>
+
+   <div class="signup-field">
+      <label for="Age">Age</label>
+      <input type="age" name="age" class="input-field" placeholder="Number" required>
+    </div>
+
+   <div class="signup-field">
+      <label for="Min">Minimal age to search</label>
+      <input type="min_age" name="min_age" class="input-field" placeholder="Number" required>
+    </div>
+
+   <div class="signup-field">
+      <label for="Max">Maximal age to search</label>
+      <input type="max_age" name="max_age" class="input-field" placeholder="Number" required>
+    </div>
+
+    <fieldset>
+      <legend class="gender">Choose your gender:</legend>
+
+      <div class="pretty p-icon p-round p-plain p-smooth p-bigger">
+        <input type="radio" value="male" name="gender">
+        <div class="state p-primary-o">
+          <i class="fas fa-male icon"></i>
+          <label for="male">Male</label>
+        </div>
+      </div>
+
+      <div class="pretty p-icon p-round p-plain p-smooth p-bigger">
+        <input type="radio" value="female" name="gender">
+        <div class="state p-primary-o">
+          <i class="fas fa-female icon"></i>
+          <label for="female">Female</label>
+        </div>
+      </div>
+
+    </fieldset>
+
+    <div class="signup-field">
+      <fieldset>
+      <legend class="gender">Preferred gender:</legend>
+
+      <div class="pretty p-icon p-round p-plain p-smooth p-bigger">
+        <input type="radio" value="male" name="pref_gender">
+        <div class="state p-primary-o">
+          <i class="fas fa-male icon"></i>
+          <label for="male">Male</label>
+        </div>
+      </div>
+
+
+      <div class="pretty p-icon p-round p-plain p-smooth p-bigger">
+        <input type="radio" value="female" name="pref_gender">
+        <div class="state p-primary-o">
+          <i class="fas fa-female icon"></i>
+          <label for="female">Female</label>
+        </div>
+      </div>
+
+    </fieldset>
+        </div>
+
+
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://phpcoder.tech/multiselect/js/jquery.multiselect.js"></script>
+      <div class="signup-field">
+<select name="citySelect[]" multiple id="citySelect">
+    {% for city in cities %}
+    <option value={{city[0]}}>{{city[0]}}</option>
+    {% endfor %}
+</select>
+      </div>
+
+<script>
+    jQuery('#citySelect').multiselect({
+    columns: 1,
+    placeholder: 'Preferred cities:',
+    search: true
+});
+</script>
+
+
+
+
+
+  <div class="signup-button">
+    <input type="submit" name='submit' value="SUBMIT">
+  </div>
+  </form>
+
+
+
+
+
+</body>
+
+{% endblock %}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ </head>
+ <body class="loggedin">
+ <nav class="site-header sticky-top py-2">
+      <div class="container d-flex flex-column flex-md-row justify-content-between">
+  <a class="py-2 d-none d-md-inline-block" href="{{ url_for('home') }}"><i class="fas fa-home"></i> Home</a>
+    <a class="py-2 d-none d-md-inline-block" href="{{ url_for('profile_creating') }}"><i class="fas fa-user-circle"></i> Profile</a>
+          <a class="py-2 d-none d-md-inline-block" href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+
+   </div>
+    </nav>
+
+            </ul>
+   </div>
+
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <div class="col-12">
+   {% block content %}{% endblock %}
+   </div>
+          </div>
+   </main>
+
+      </div>
+    </div>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            {% if category == "error" %}
+            <div id="error-msg" class="alert alert-danger signup-alert m-auto text-center"
+                 style="position: absolute; left: 58.5%; transform: translate(-50%, 0);" role="alert">
+              {{ message }}
+                     <script> window.scrollTo({top: document.body.scrollHeight, behavior: 'instant'}); </script>
+            </div>
+            {% endif %}
+            {% if category == "success" %}
+            <div id="success-msg" class="alert alert-success signup-alert m-auto text-center" role="alert"
+                 style="position: absolute; left: 58.5%; transform: translate(-50%, 0);">
+              {{ message }}
+                <script> window.scrollTo({top: document.body.scrollHeight, behavior: 'instant'}); </script>
+            </div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+ <script
+         type="text/javascript">window.setTimeout("document.getElementById('error-msg').style.display='none';", 1700);
+         type="text/javascript">window.setTimeout("document.getElementById('success-msg').style.display='none';", 1700);
+ </script>
+
+
+
+ </body>
+</html>

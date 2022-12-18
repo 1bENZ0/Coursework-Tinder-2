@@ -1,0 +1,99 @@
+/* Import Pretty Checkboxes*/
+@import "https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css";
+/* Import Varela Round from Google Fonts*/
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
+
+/*Variables defined*/
+:root {
+  --main-color: coral;
+  --text-color: #444;
+  --formcolor: white;
+  --button-color: hsl(356, 90%, 64%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { /* html is full screen. */
+  height: 100%;
+}
+
+body {
+  display: flex;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  font-family: 'Varela Round', sans-serif; /* Very similar font to Helvetica Round.*/
+  font-size: 1.1rem;
+  font-weight: bold;
+  background: linear-gradient(to bottom, #f64f59, #c471ed, #12c2e9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-repeat: no-repeat; /* Don't repeat gradient in landscape mode on mobile phones*/
+  background-attachment: fixed;
+}
+
+form {
+  display: block;
+  border-radius: 12px;
+  padding: 10vh 10vw;
+  background: var(--formcolor);
+  text-align: center;
+  box-shadow: 0px 0px 5px hsl(195, 50%, 98%);
+}
+
+.title {
+  padding: 10px 0px;
+  border-bottom: 4px solid;
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.signup-field {
+  padding: 10px;
+  text-align: left;
+}
+
+fieldset {
+  display: inline;
+  text-align: left;
+  padding: 10px;
+}
+
+input[type="submit"] {
+  font-family: inherit;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 1.2rem;
+  padding: 0.8rem 1.2rem;
+  border: 2px outset var(--button-color);
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--text-color);
+  background-color: transparent;
+  transition: all 0.2s ease-out;
+}
+
+input[type="submit"]:hover {
+  cursor: pointer;
+  background-color: var(--button-color, black);
+  color: var(--formcolor);
+  transition-duration: 0.4s;
+}
+
+.input-field {
+  border: 0;
+  border-radius: 5px;
+  height: 40px;
+  padding: 0.8rem 1.2rem;
+  margin: 0.3rem 0;
+  background-color: #f0f0f0;
+}
+
+label {
+  display: block;
+}
+

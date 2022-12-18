@@ -1,0 +1,33 @@
+<header>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile_page.css') }}">
+	<div class="container">
+
+		<div class="profile">
+	<button class="btn profile-edit-btn" onclick="window.location.href='{{ url_for( 'home_page' ) }}';">Home</button>
+			</div>
+		<div class="profile">
+
+
+			<div class="profile-user-settings">
+
+				{% if names %}
+				{% for name in names %}
+				<button class="btn profile-edit-btn" onclick="window.location.href='{{ url_for( 'liker_profile', id=name[0] ) }}';">{{name[1]}}</button>
+				{% endfor %}
+				</div>
+				{% else %}
+					<h1 class="profile-user-name">Nobody ((</h1>
+				{% endif %}
+
+
+
+
+		</div>
+
+
+		<!-- End of profile section -->
+
+	</div>
+	<!-- End of container -->
+
+</header>

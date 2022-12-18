@@ -1,0 +1,30 @@
+ <body>
+<html>
+ {% block content %}{% endblock %}
+
+ {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            {% if category == "error" %}
+            <div id="error-msg" class="alert alert-danger signup-alert m-auto text-center"
+                 style="font-size: 2em; position: absolute; left: 50%; transform: translate(-50%, 0);" role="alert">
+              {{ message }}
+            </div>
+            {% endif %}
+            {% if category == "success" %}
+            <div id="success-msg" class="alert alert-success signup-alert m-auto text-center" role="alert"
+                 style="font-size: 2em; position: absolute; left: 50%; transform: translate(-50%, 0);">
+              {{ message }}
+            </div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+ <script
+         type="text/javascript">window.setTimeout("document.getElementById('error-msg').style.display='none';", 1700);
+         type="text/javascript">window.setTimeout("document.getElementById('success-msg').style.display='none';", 1700);
+ </script>
+
+ </body>
+</html>

@@ -1,0 +1,39 @@
+<header>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile_page.css') }}">
+	<div class="container">
+
+		<div class="profile">
+	<button class="btn profile-edit-btn" onclick="window.location.href='{{ url_for( 'home_page' ) }}';">Home</button>
+
+
+			</div>
+
+
+				<span class="profile-real-name">My notifications:</span>
+				<p></p>
+				{% if my_notifications %}
+				{% for my_notification in my_notifications %}
+				<p><a class="">Id: {{my_notification[0]}} Admin_id: {{my_notification[1]}} User_id: {{my_notification[2]}} Message: {{my_notification[3]}} Date: {{my_notification[4]}}</a></p>
+				{% endfor %}
+
+				{% else %}
+					<a>Nobody ((</a>
+				{% endif %}
+				<p></p>
+				<span style="padding: 0px" class="profile-real-name">Other admin's notifications:</span>
+				{% if my_notifications %}
+				{% for other_notification in other_notifications %}
+				<p><a style="padding: 0px" class="">Id: {{other_notification[0]}} Admin_id: {{other_notification[1]}} User_id: {{other_notification[2]}} Message: {{other_notification[3]}} Date: {{other_notification[4]}}</a></p>
+
+				{% endfor %}
+				</div>
+				{% else %}
+					<a>Nobody ((</a>
+				{% endif %}
+		</div>
+		<!-- End of profile section -->
+
+
+	<!-- End of container -->
+
+</header>

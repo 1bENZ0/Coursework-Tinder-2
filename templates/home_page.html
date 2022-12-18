@@ -1,0 +1,88 @@
+
+
+<header>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile_page.css') }}">
+
+	{% if warning %}
+	<script> alert('Warning from administrator: {{warning[3]}}. Date: {{warning[4]}}')</script>
+	{% endif %}
+
+	<div class="container">
+
+		<div class="profile">
+
+			<div class="profile-image">
+
+				<img src="{{profile_image}}" width="200" height="200" alt="">
+
+			</div>
+
+			<div class="profile-user-settings">
+
+				<h1 class="profile-user-name">{{name}} {{last_name}}</h1>
+
+				<button class="btn profile-edit-btn" onclick="window.location.href='{{ url_for( 'edit' ) }}';">Edit Profile</button>
+
+				<button class="btn profile-edit-btn" onclick="window.location.href='{{ url_for( 'logout' ) }}';">Logout</button>
+
+				{% if is_admin %}
+
+				<button class="btn profile-edit-btn" onclick="window.location.href='{{ url_for( 'all_users' ) }}';">Users</button>
+
+				{% endif %}
+			</div>
+
+			<div class="profile-stats">
+
+			<li><button class="btn profile-edit-btn" onclick="window.location.href='{{ url_for( 'user_profile' ) }}';">Let's go!</button></li>
+			<li><button onclick="window.location.href='{{ url_for( 'user_likes' ) }}';"><span class="profile-stat-count">{{likes}}</span> likes</button></li>
+
+			</div>
+
+			<div class="profile-bio">
+				<p><span class="profile-real-name">About me: </span>{{biography}}</p>
+			</div>
+
+			<div class="profile-bio">
+				<p><span class="profile-real-name">City: </span>{{city}}</p>
+			</div>
+
+			<div class="profile-bio">
+				<p><span class="profile-real-name">Gender: </span>{{gender}}</p>
+			</div>
+
+			<div class="profile-bio">
+				<p><span class="profile-real-name">Age: </span>{{age}}</p>
+			</div>
+
+			<div class="profile-bio">
+				<p><span class="profile-real-name">Prefer age: </span>from {{min_age}} to {{max_age}}</p>
+			</div>
+
+			<div class="profile-bio">
+				<p><span class="profile-real-name">Contact: </span>{{vk_inst}}</p>
+			</div>
+
+			<div class="profile-bio">
+				<p><span class="profile-real-name">Prefer gender: </span>{{pref_gender}}</p>
+			</div>
+
+			<div class="profile-bio">
+				<p><span class="profile-real-name">Prefer city(-ies): </span>
+					{% for city in pref_cities_name %}
+					{{city}}
+					{% endfor %}
+				</p>
+			</div>
+
+		</div>
+		<!-- End of profile section -->
+
+	</div>
+	<!-- End of container -->
+
+</header>
+
+
+
+

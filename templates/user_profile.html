@@ -1,0 +1,50 @@
+<header>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile_page.css') }}">
+	<div class="container">
+
+		<div class="profile">
+
+			<div class="profile-image">
+
+				<img src="{{profile_image}}" width="200" height="200" alt="">
+
+			</div>
+
+			<div class="profile-user-settings">
+
+				<h1 class="profile-user-name">{{name}} {{last_name}}</h1>
+
+				<button class="btn profile-edit-btn" onclick="window.location.href='{{ url_for( 'like', id=profile_id ) }}';">Like!</button>
+
+				<button class="btn profile-edit-btn" onclick="window.location.href='{{ url_for( 'user_profile' ) }}';">Next Profile</button>
+
+				<button class="btn profile-edit-btn" onclick="window.location.href='{{ url_for( 'home_page' ) }}';">Home</button>
+
+			</div>
+
+
+			<div class="profile-bio">
+				<p><span class="profile-real-name">About me: </span>{{biography}}</p>
+			</div>
+
+			<div class="profile-bio">
+				<p><span class="profile-real-name">City: </span>{{city}}</p>
+			</div>
+
+			<div class="profile-bio">
+				<p><span class="profile-real-name">Gender: </span>{{gender}}</p>
+			</div>
+
+			<div class="profile-bio">
+				<p><span class="profile-real-name">Age: </span>{{age}}</p>
+			</div>
+
+
+
+		</div>
+		<!-- End of profile section -->
+
+	</div>
+	<!-- End of container -->
+
+</header>
