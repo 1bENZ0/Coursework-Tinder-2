@@ -9,7 +9,7 @@ from config import DB_NAME, DB_USER, DB_PASS, DB_HOST, DB_PORT
 
 UPLOAD_FOLDER = 'static/uploads/'
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 app.secret_key = 'pobeda'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
@@ -54,7 +54,7 @@ def login():
                 cursor.execute('SELECT * FROM profile WHERE profile_id = %s', (user_id,))
                 user_profile = cursor.fetchone()
                 if user_profile:
-                # Redirect to home page
+                    # Redirect to home page
                     return redirect(url_for('home_page'))
                 else:
                     return redirect(url_for('profile_creating'))
@@ -99,13 +99,13 @@ def profile_creating():
                 flash('Only numbers!', category='error')
             else:
                 city = city.lower()
-                cursor.execute("SELECT city_id FROM city WHERE city_name=%s", (city, ))
+                cursor.execute("SELECT city_id FROM city WHERE city_name=%s", (city,))
                 city_id = cursor.fetchone()
                 if not city_id:
                     cursor.execute(
                         "INSERT INTO city (city_name) "
                         "VALUES (%s) RETURNING city_id",
-                        (city, ))
+                        (city,))
                     city_id = cursor.fetchone()
                     conn.commit()
 
@@ -271,10 +271,12 @@ def edit():
     cursor.execute("SELECT city_name FROM city")
     all_cities = cursor.fetchall()
     return render_template('edit_page.html', profile_image=session['photo'],
-                           name=session['first_name'], last_name=session['second_name'], age=session['age'], gender=session['gender_name'],
+                           name=session['first_name'], last_name=session['second_name'], age=session['age'],
+                           gender=session['gender_name'],
                            biography=session['biography'], vk_inst=session['vk_inst'], min_age=session['min_age'],
-                           max_age=session['max_age'], city=session['city'], pref_gender=session['preferred_gender'], pref_cities=session['pref_cities'],
-                          all_cities=all_cities)
+                           max_age=session['max_age'], city=session['city'], pref_gender=session['preferred_gender'],
+                           pref_cities=session['pref_cities'],
+                           all_cities=all_cities)
 
 
 @app.route('/delete_profile', methods=['GET', 'POST'])
@@ -286,7 +288,8 @@ def are_u_sure():
         if 'yes' in request.form:
             cursor.execute("DELETE FROM notification WHERE user_id=%s", (session['user_id'],))
             conn.commit()
-            cursor.execute("DELETE FROM likes WHERE liker_id=%s OR liked_id=%s", (session['user_id'],session['user_id']))
+            cursor.execute("DELETE FROM likes WHERE liker_id=%s OR liked_id=%s",
+                           (session['user_id'], session['user_id']))
             conn.commit()
             cursor.execute("DELETE FROM interested_in_city WHERE user_id=%s", (session['user_id'],))
             conn.commit()
@@ -330,14 +333,14 @@ def home_page():
     image = account['profile_img']
     photo = 'static/uploads/'
     if image:
-         photo += image
+        photo += image
     else:
         photo += 'duck.png'
     session['photo'] = photo
-    cursor.execute("SELECT city_name from city WHERE city_id = %s", (account['city_id'], ))
+    cursor.execute("SELECT city_name from city WHERE city_id = %s", (account['city_id'],))
     city = cursor.fetchone()[0]
     session['city'] = city
-    cursor.execute("SELECT city_id from interested_in_city WHERE user_id = %s", (session['user_id'], ))
+    cursor.execute("SELECT city_id from interested_in_city WHERE user_id = %s", (session['user_id'],))
     pref_cities = cursor.fetchall()
     pref_cities_name = []
     for pref_city in pref_cities:
@@ -357,11 +360,11 @@ def home_page():
 
 
 def match_word(word):
-   return re.match(r'[A-Za-zА-Яа-я\s]+', word)
+    return re.match(r'[A-Za-zА-Яа-я\s]+', word)
 
 
 def match_number(number):
-   return re.match(r'[0-9\s]+', number)
+    return re.match(r'[0-9\s]+', number)
 
 
 @app.route('/all_users', methods=['GET', 'POST'])
@@ -426,7 +429,7 @@ def user_profile_for_admin(id):
                            name=name, second_name=second_name, vk_inst=vk_inst,
                            age=age, gender=gender,
                            biography=biography, city=city, profile_id=profile_id
-                          )
+                           )
 
 
 @app.route('/delete_user_profile_admin/<int:id>', methods=['GET', 'POST'])
@@ -497,7 +500,7 @@ def user_likes():
         return redirect(url_for('login'))
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     cursor.execute("SELECT liker_id FROM likes WHERE liked_id = %s"
-                    , (session['user_id'], ))
+                   , (session['user_id'],))
     likers = cursor.fetchall()
     for i in range(len(likers)):
         cursor.execute("SELECT first_name FROM profile WHERE profile_id = %s"
@@ -514,7 +517,7 @@ def liker_profile(id):
     profile_id = id
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     cursor.execute("SELECT * FROM profile WHERE profile_id = %s",
-                   (profile_id, ))
+                   (profile_id,))
     account = cursor.fetchone()
     name = account['first_name']
     second_name = account['second_name']
@@ -553,7 +556,8 @@ def user_profile():
     cursor.execute("SELECT * FROM profile WHERE age >= %s AND age <= %s AND gender_name = %s AND profile_id != %s AND "
                    "city_id "
                    "IN (SELECT city_id FROM interested_in_city WHERE user_id = %s) ORDER BY RANDOM() LIMIT 1"
-                   , (session['min_age'], session['max_age'], session['preferred_gender'], session['user_id'], session['user_id']))
+                   , (session['min_age'], session['max_age'], session['preferred_gender'], session['user_id'],
+                      session['user_id']))
     account = cursor.fetchone()
     if account is None:
         return render_template('nobody.html')
@@ -598,7 +602,7 @@ def register():
             conn.commit()
             if user_login in admins_logins():
                 cursor.execute("UPDATE users SET is_admin = %s",
-                               (True, ))
+                               (True,))
                 conn.commit()
             return redirect(url_for('login'))
 
