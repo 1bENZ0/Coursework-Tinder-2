@@ -1,1 +1,2 @@
-# Kursovaya_Tinder2
+# Coursework_Tinder2
+Database course semester work.
