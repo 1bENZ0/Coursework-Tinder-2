@@ -1,2 +1,3 @@
-# Coursework_Tinder2
-Database course semester work.
+# Coursework Tinder2
+Course work on the discipline Databases.
+Teacher A.V. Aksenov.
